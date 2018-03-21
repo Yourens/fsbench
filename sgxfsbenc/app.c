@@ -288,5 +288,6 @@ int SGX_CDECL main(int argc, char *argv[]) {
   /* Destroy the enclave */
   sgx_destroy_enclave(eid);
 
+	remove("Testfile.txt");
   return 0;
 }

@@ -117,6 +117,7 @@ int main(int argc, char *argv[]) {
   double cost = (endtime - starttime)/(double)1000000;
   printf("cost: %f s\n", cost);
   printf("speed: %f MB/s\n", totalsize / cost);
+	remove("Testfile.txt");
 
   return 0;
 }

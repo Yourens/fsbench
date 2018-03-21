@@ -1,0 +1,18 @@
+enclave
+{
+    from "sgx_tprotected_fs.edl" import *;
+    include "sgx_tprotected_fs.h"
+    trusted
+    {
+        /* define ECALLs here. */
+        public void ecall_run_benchmark(int pattern, int nu_blocks, [user_check] int * indices);
+        public void ecall_CreateTestFile(int nu_blocks, int blocksize);
+        public void ecall_empty();
+        
+    };
+    untrusted
+    {
+        void ocall_print_string([in, string] const char *str);
+        void ocall_print_uint([in, count=size]uint8_t * u, size_t size);
+    };
+};

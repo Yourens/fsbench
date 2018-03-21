@@ -2,7 +2,7 @@
 LDFLAGS := -lstdc++ 
 
 INCLUDE_PATH := 
-CFLAGS := $(INCLUDE_PATH) -Wall -g -O0
+CFLAGS := $(INCLUDE_PATH) -Wall -O2
  
 CXX = g++
 CC = gcc

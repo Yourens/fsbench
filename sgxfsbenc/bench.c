@@ -30,7 +30,7 @@ static void CheckFDError(SGX_FILE *fd) {
 }
 
 static int SequentialRead() {
-  SGX_FILE *fd = file_open(test_filename, "r");
+  SGX_FILE *fd = file_open(test_filename, "r+");
   CheckFDError(fd);
   for (int i = 0; i < nu_blocks; i++) {
     file_read_with_check(fd, buffer, block_size);
@@ -40,8 +40,9 @@ static int SequentialRead() {
 }
 
 static int SequentialWrite() {
-  SGX_FILE *fd = file_open(test_filename, "w");
+  SGX_FILE *fd = file_open(test_filename, "r+");
   CheckFDError(fd);
+  sgx_fseek(fd, 0, SEEK_SET);
   for (int i = 0; i < nu_blocks; i++)
     file_write_with_check(fd, buffer, block_size);
   file_close(fd);
@@ -49,7 +50,7 @@ static int SequentialWrite() {
 }
 
 static int RandomRead() {
-  SGX_FILE *fd = file_open(test_filename, "r");
+  SGX_FILE *fd = file_open(test_filename, "r+");
   CheckFDError(fd);
   for (int i = 0; i < nu_blocks; i++) {
     int block_index = indices[i];
@@ -61,7 +62,7 @@ static int RandomRead() {
 }
 
 static int RandomWrite() {
-  SGX_FILE *fd = file_open(test_filename, "w");
+  SGX_FILE *fd = file_open(test_filename, "r+");
   CheckFDError(fd);
   for (int i = 0; i < nu_blocks; i++) {
     int block_index = indices[i];

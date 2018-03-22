@@ -32,7 +32,7 @@ static void CheckFDError(FILE* fd) {
 }
 
 static int SequentialRead() {
-  FILE* fd = file_open(test_filename, "r");
+  FILE* fd = file_open(test_filename, "r+");
   CheckFDError(fd);
   for (int i = 0; i < nu_blocks; i++) {
     file_read_with_check(fd, buffer, block_size);
@@ -42,7 +42,7 @@ static int SequentialRead() {
 }
 
 static int SequentialWrite() {
-  FILE* fd = file_open(test_filename, "w");
+  FILE* fd = file_open(test_filename, "r+");
   CheckFDError(fd);
   for (int i = 0; i < nu_blocks; i++)
     file_write_with_check(fd, buffer, block_size);
@@ -51,7 +51,7 @@ static int SequentialWrite() {
 }
 
 static int RandomRead() {
-  FILE* fd = file_open(test_filename, "r");
+  FILE* fd = file_open(test_filename, "r+");
   CheckFDError(fd);
   for (int i = 0; i < nu_blocks; i++) {
     int block_index = indices[i];
@@ -63,7 +63,7 @@ static int RandomRead() {
 }
 
 static int RandomWrite() {
-  FILE* fd = file_open(test_filename, "w");
+  FILE* fd = file_open(test_filename, "r+");
   CheckFDError(fd);
   for (int i = 0; i < nu_blocks; i++) {
     int block_index = indices[i];

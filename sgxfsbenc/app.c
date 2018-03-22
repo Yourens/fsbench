@@ -14,7 +14,6 @@
 #include "app.h"
 #include "common.h"
 #include "enclave_u.h"
-#include "sgx_tprotected_fs.h"
 #include "sgx_uae_service.h"
 #include "sgx_urts.h"
 
